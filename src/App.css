@@ -1,0 +1,328 @@
+/* OS.Agent CSS Stylesheet */
+
+.app-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  width: 1000px;
+  height: 650px;
+  max-width: 95vw;
+  max-height: 90vh;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 95vh;
+    max-height: none;
+  }
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--burgundy-accent);
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.brand h1 {
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: var(--cream-pure);
+  margin: 0;
+  text-align: left;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  background: rgba(166, 43, 83, 0.15);
+  border: 1px solid rgba(166, 43, 83, 0.4);
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: var(--cream-pure);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.status-indicator.loading {
+  background: #f59e0b;
+  animation: spin 1s infinite linear;
+}
+
+/* Chat Section */
+.chat-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: 1px solid var(--glass-border);
+  background: rgba(15, 3, 7, 0.2);
+}
+
+.messages-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message-bubble {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.message-bubble.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--burgundy-accent) 0%, var(--burgundy-light) 100%);
+  color: var(--cream-pure);
+  border-bottom-right-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-sm);
+}
+
+.message-bubble.agent {
+  align-self: flex-start;
+  background: rgba(253, 250, 246, 0.06);
+  border: 1px solid var(--glass-border);
+  color: var(--cream-base);
+  border-bottom-left-radius: 2px;
+}
+
+/* Input Area */
+.input-area {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px 20px;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid var(--glass-border);
+}
+
+.input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.prompt-input {
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--cream-base);
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.prompt-input:focus {
+  border-color: var(--burgundy-accent);
+  box-shadow: 0 0 0 2px rgba(166, 43, 83, 0.25);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.send-btn {
+  background: var(--burgundy-accent);
+  border: none;
+  border-radius: 8px;
+  color: var(--cream-pure);
+  padding: 0 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.send-btn:hover {
+  background: #c23865;
+  transform: translateY(-1px);
+}
+
+.send-btn:active {
+  transform: translateY(0);
+}
+
+.send-btn:disabled {
+  background: rgba(166, 43, 83, 0.3);
+  color: rgba(253, 250, 246, 0.4);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Quick Actions */
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quick-btn {
+  background: rgba(253, 250, 246, 0.04);
+  border: 1px solid rgba(253, 250, 246, 0.06);
+  border-radius: 6px;
+  color: var(--cream-darker);
+  padding: 6px 12px;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.quick-btn:hover {
+  background: var(--glass-hover);
+  color: var(--cream-pure);
+  border-color: rgba(166, 43, 83, 0.5);
+}
+
+/* Console Section */
+.console-section {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.console-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--cream-muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.console-header-actions {
+  margin-left: auto;
+}
+
+.clear-btn {
+  background: transparent;
+  border: none;
+  color: var(--cream-muted);
+  cursor: pointer;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.clear-btn:hover {
+  color: var(--cream-pure);
+}
+
+.console-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.console-line {
+  line-height: 1.5;
+  color: var(--cream-muted);
+  white-space: pre-wrap;
+  word-break: break-all;
+  border-left: 2px solid transparent;
+  padding-left: 8px;
+}
+
+.console-line.success-step {
+  border-left-color: #10b981;
+}
+
+.console-line.error-step {
+  border-left-color: #ef4444;
+}
+
+.console-line.warn-step {
+  border-left-color: #f59e0b;
+}
+
+.console-line.agent-step {
+  border-left-color: #3b82f6;
+}
+
+.console-line .timestamp {
+  color: var(--burgundy-accent);
+  margin-right: 8px;
+  font-weight: 600;
+}
+
+.console-line .tag {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.console-line .tag.success {
+  color: #10b981;
+}
+
+.console-line .tag.error {
+  color: #ef4444;
+}
+
+.console-line .tag.warn {
+  color: #f59e0b;
+}
+
+.console-line .tag.step {
+  color: #3b82f6;
+}
+
+.console-line .tag.exec {
+  color: #ec4899;
+}
+
+.console-line .tag.sys {
+  color: #a855f7;
+}
